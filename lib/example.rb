@@ -3,14 +3,23 @@ OUTPUT_DIR = 'examples/output'
 
 class Example
   attr_reader :language, :title, :code, :output
-  
+
   def initialize(language, name)
     @language = language
+    @name     = name
     @title    = File.basename(name, File.extname(name))
-    @code     = File.read("#{CODE_DIR}/#{language}/#{name}")
     @output   = File.read("#{OUTPUT_DIR}/#{@title}")
+    @code     = formated_code
   end
-  
+
+  def formated_code
+    File.read("#{CODE_DIR}/#{@language}/#{@name}")
+          .gsub('\\', '\\\\\\')
+          .gsub("\n", '\\n')
+          .gsub("\r", '\\r')
+          .gsub("\t", '\\t')
+  end
+
   def self.all
     # Get language code directories.
     dirs = Dir.entries(CODE_DIR).select do |entry|

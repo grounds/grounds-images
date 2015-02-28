@@ -1,15 +1,21 @@
+require 'image'
+
 class Container
   attr_reader :image, :cmd, :output
 
-  def initialize(repository, example)
-    @image = Utils.format_image(repository, example.language)
-    @cmd   = Utils.format_cmd(example.code)
+  def initialize(example)
+    @image = Image.find(example.language)
+    @cmd   = [example.code]
   end
-  
+
   def run
     @output = ''
-    @internal  = Docker::Container.create('Image' => @image, 'Cmd'   => @cmd)
-                                       
+    @internal  = Docker::Container.create('Image' => @image.name, 'Cmd' => @cmd)
+
     @internal.tap(&:start).attach { |_, chunk| @output << chunk }
+  end
+
+  def remove
+    @internal.delete(force: true)
   end
 end

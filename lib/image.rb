@@ -1,15 +1,16 @@
 require 'docker'
-require 'utils'
 
-IMAGE_DIR    = 'dockerfiles'
+IMAGES_DIR    = 'dockerfiles'
+IMAGES_PREFIX = 'exec'
+REPOSITORY    = ENV.fetch('REPOSITORY', 'grounds')
 
 class Image
-  attr_reader :language, :name, :dir, :internal
+  attr_reader :language, :name, :dir
 
-  def initialize(repository, language)
+  def initialize(language)
     @language = language
-    @name     = Utils.format_image(repository, language)
-    @dir      = "#{IMAGE_DIR}/#{language}"
+    @dir      = "#{IMAGES_DIR}/#{language}"
+    @name     = "#{REPOSITORY}/#{IMAGES_PREFIX}-#{language}"
   end
 
   def build
@@ -20,15 +21,15 @@ class Image
     @internal.tag(repo: @name, tag: 'latest', force: true)
   end
 
-  def self.all(repository)
-    dirs.map { |dir| { :"#{dir}" => new(repository, dir) } }
+  def self.all
+    dirs.map { |dir| new(dir) }
   end
-  
-  def self.find(repository, language)
-    all(repository).select {|img| img.language == language}.first
+
+  def self.find(language)
+    all.select { |img| img.language == language }.first
   end
 
   def self.dirs
-    Dir.entries(IMAGE_DIR).select { entry != '.' && entry != '..' }
+    Dir.entries(IMAGES_DIR).select { |entry| entry != '.' && entry != '..' }
   end
 end
