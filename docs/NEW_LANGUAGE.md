@@ -149,16 +149,12 @@ To add this language to the test suite:
 You can find great examples on
 [Rosetta code](http://rosettacode.org/wiki/Hello_world).
 
-3. Add this language code in `test/factories/examples.js`:
+3. Run the examples test suite
 
-        var languages = ['c', 'cpp', 'php'];
+        rake test
 
-4. Run the examples test suite
+4. If you want to test only a specific language
 
-        TESTS_OPTS="test/features/examples.js" make test
-
-5. If you want to test only a specific language
-
-        TESTS_OPTS="test/features/examples.js" LANGUAGE="ruby" make test
+        LANGUAGE="ruby" rake test
 
 **Thanks for your contribution!**
