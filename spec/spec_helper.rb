@@ -1,3 +1,3 @@
 require 'docker'
 
-Docker.options = { read_timeout: 60, write_timeout: 60 }
+Docker.options = { read_timeout: 600, write_timeout: 600 }
