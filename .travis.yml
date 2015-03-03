@@ -4,13 +4,13 @@ rvm:
 
 before_script:
   - bundle install
-  - rake build
+  - bundle exec rake build
 
-script: rake test
+script: bundle exec rake test
 
 after_success:
-  - rake push
-  - DOCKER_URL=$DOCKER_STAGING rake pull
+  - bundle exec rake push
+  - DOCKER_URL=$DOCKER_STAGING bundle exec rake pull
 
 # Use docker travis worker
 sudo: false
