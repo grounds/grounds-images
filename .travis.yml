@@ -1,0 +1,18 @@
+language: ruby
+rvm:
+  - 2.1.5
+
+before_script:
+  - bundle install
+  - rake build
+
+script: rake test
+
+after_success:
+  - rake push
+  - DOCKER_URL=$DOCKER_STAGING rake pull
+
+# Use docker travis worker
+sudo: false
+
+cache: bundler
