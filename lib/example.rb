@@ -34,4 +34,8 @@ class Example
     end
     examples
   end
+
+  def self.find(language)
+    all.select { |ex| ex.language == language }.first
+  end
 end

@@ -20,7 +20,7 @@ class Image
 
     @internal.tag(repo: @name, tag: 'latest', force: true)
   end
-  
+
   def push
     @internal.push do |out|
       puts out

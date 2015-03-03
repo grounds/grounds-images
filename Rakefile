@@ -1,6 +1,8 @@
 require 'docker'
 require './lib/image'
 
+Docker.validate_version!
+
 images = Image.all
 
 task :build do

@@ -29,14 +29,10 @@ about how to add support for a new language stack.
 You need [Ruby 2.0+](http://www.ruby-lang.org), and [Bundler](http://bundler.io/)
 to run this project.
 
-Install dependencies:
-
-    bundle install
-    
-Configure Docker:
+Configure Docker URL:
 
     export DOCKER_URL="http://127.0.0.1:2375"
-    
+
 You can instead set:
 
 * `DOCKER_HOST`
@@ -45,17 +41,21 @@ You can instead set:
 
 >If you are using `boot2docker`, it should work out of the box.
 
+Install dependencies:
+
+    bundle install
+
 Build Docker images:
 
     rake build
-    
+
 You can also build these images for your own repository:
 
     REPOSITORY="tintin" rake build
 
 If you do so, please prefix use `REPOSITORY` environment variables for every rake
 tasks.
-    
+
 ## Get a shell inside an image
 
     docker run -ti --entrypoint=/bin/bash grounds/exec-ruby
@@ -82,7 +82,7 @@ To pull these images from a docker registry:
 
     REPOSITORY="tintin" rake pull
 
->Default `REPOSITORY` is set to 'grounds' official organization on the Docker
+>Default `REPOSITORY` is set to Grounds official organization on the Docker
 [Hub](http://registry.hub.docker.com/repos/grounds/).
 
 ## Tests
@@ -90,11 +90,11 @@ To pull these images from a docker registry:
 To run the test suite:
 
     rake test
-    
+
 To run the test suite for a specific language:
 
     LANGUAGE="ruby" rake test
-    
+
 ## Contributing
 
 Before sending a pull request, please checkout the contributing

@@ -3,16 +3,17 @@ rvm:
   - 2.1.5
 
 before_script:
-  - bundle install
   - bundle exec rake build
 
 script: bundle exec rake test
 
+# Push images to the docker hub.
+# Then, pull images on Grounds Docker API.
 after_success:
   - bundle exec rake push
   - DOCKER_URL=$DOCKER_STAGING bundle exec rake pull
 
-# Use docker travis worker
+# Use Docker travis worker
 sudo: false
 
 cache: bundler
