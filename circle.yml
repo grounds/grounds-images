@@ -1,7 +1,10 @@
 machine:
-  services:
-    - docker
-
+  environment:
+   BIN_URL: "https://get.docker.com/builds/Linux/x86_64/docker-latest"
+   BIN_PATH: "/usr/local/bin/docker"
+   
 dependencies:
   override:
+    - wget $BIN_URL -O $BIN_PATH 
+    - chmod +x $BIN_PATH
     - rake build
