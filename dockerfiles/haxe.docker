@@ -5,13 +5,14 @@ RUN apt-get update -qq && \
 
 ENV VERSION 3.1.3
 ENV SRSLY 3,1,3
+ENV HAXE /haxe
 
-RUN mkdir /haxe
-RUN wget -O haxe.tar.gz http://haxe.org/website-content/downloads/$SRSLY/downloads/haxe-$VERSION-linux64.tar.gz &&\
-    tar xzf haxe.tar.gz --strip=1 -C "/haxe"
+RUN mkdir $HAXE && \
+    wget -O haxe.tar.gz http://haxe.org/website-content/downloads/$SRSLY/downloads/haxe-$VERSION-linux64.tar.gz && \
+    tar xzf haxe.tar.gz --strip=1 -C $HAXE
 
-ENV HAXE_STD_PATH /haxe/std/
-ENV PATH /haxe/:$PATH
+ENV HAXE_STD_PATH $HAXE/std/
+ENV PATH $HAXE/:$PATH
 
 # Set the locale
 RUN locale-gen en_US.UTF-8

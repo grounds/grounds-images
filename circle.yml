@@ -7,7 +7,7 @@ machine:
 dependencies:
   override:
     - rake build
-    
+
 test:
   override:
     - rake test
