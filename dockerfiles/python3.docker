@@ -1,4 +1,7 @@
-FROM gcc:latest
+FROM python:latest
+
+ENV FILE prog.py
+ENV EXEC python3 $FILE
 
 ENV DEV /home/dev
 

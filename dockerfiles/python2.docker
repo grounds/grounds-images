@@ -1,4 +1,7 @@
-FROM python:latest
+FROM python:2.7.8
+
+ENV FILE prog.py
+ENV EXEC python2 $FILE
 
 ENV DEV /home/dev
 

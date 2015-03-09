@@ -8,21 +8,24 @@ These images can be found inside the `dockerfiles` directory:
 ```
 dockerfiles
 │
-├───ruby
-│   │   Dockerfile
-│   │   run.sh
+├─── ruby.docker
 │
-│
-└───golang
-    │   Dockerfile
-    │   run.sh
+└─── golang.docker
+|   
+└─── run.sh
 ```
 
-Each image has a directory named with its language code.
-Inside this directory there is two files:
+Each image has:
 
-- A `Dockerfile` to build the image.
-- A shell script `run.sh` that must be copied inside the image.
+- A `Dockerfile` named like:
+
+    $LANGUAGE_CODE.docker
+    
+e.g.
+
+    php.docker
+
+- A shell script `run.sh` that must be copied inside every image.
 
 Images are following this naming convention:
 
@@ -32,21 +35,26 @@ Images are built has an executable Docker image. This allow us to do:
 
     $ docker run grounds/exec-ruby "puts 42"
     42
+    
+## Run.sh
+
+This script writes into a file the content of the first argument into a file
+specified by environment variable `FILE` and then execute the command specified
+by environment variable `EXEC`.
+
+e.g.
+
+    FILE='prog.rb' EXEC='ruby prog.rb' ./run.sh 'puts "hello world"'
+
 
 ## Create an image
 
 Creating an image for a new language is really trivial.
 Take a look at this example for the C language:
 
-Create the directory:
+Add a `Dockerfile` inside images directory:
 
-    mkdir dockerfiles/c
-
-Add a `Dockerfile` and a shell script inside this directory:
-
-    touch dockerfiles/c/Dockerfile
-    touch dockerfiles/c/run.sh
-    chmod u+x dockerfiles/c/run.sh
+    touch dockerfiles/c.docker
 
 ### Inside the Dockerfile:
 
@@ -73,28 +81,36 @@ If there is no official image for this language stack:
             build-essential \
             gcc
 
-4. Set development directory in env:
+4. Specify file format:
+
+        ENV FILE prog.c
+
+5. Specify compiler/interpreter command:
+
+        ENV EXEC gcc -o prog $FILE && ./prog
+
+6. Set development directory in env:
 
         ENV DEV /home/dev
 
-5. Copy the script `run.sh` inside the development directory:
+7. Copy the script `run.sh` inside the development directory:
 
         COPY run.sh $DEV/run.sh
 
-6. Add a user and give him access to the development directory:
+8. Add a user and give him access to the development directory:
 
         RUN useradd dev
         RUN chown -R dev: $DEV
 
-7. Switch to this user:
+9. Switch to this user:
 
         USER dev
 
-8. Set working directory:
+10. Set working directory:
 
         WORKDIR $DEV
 
-9. Configure this image as an executable:
+11. Configure this image as an executable:
 
         ENTRYPOINT ["./run.sh"]
 
@@ -103,27 +119,6 @@ When you run a Docker container with this image:
 - The default `pwd` of this container will be `/home/dev`.
 - The user of this container will be `dev`
 - This container will run `run.sh` and takes as parameter a string whith arbitrary code inside.
-
-### Inside the shell script:
-
-1. Add sh shebang line:
-
-        #!/bin/sh
-
-2. Echo first parameter from CLI to a file runnable by the language compiler/interpreter:
-
-         echo "$1" > prog.c
-
-    Please don't forget to surround `$1` with quotation marks, to avoid unexpected behaviors.
-
-3. Compile and/or run the program:
-
-        gcc -o prog prog.c
-
-        if [ -f "prog" ]
-        then
-          ./prog
-        fi
 
 ### Build the image
 

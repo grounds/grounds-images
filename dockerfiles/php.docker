@@ -1,4 +1,7 @@
-FROM java:latest
+FROM php:latest
+
+ENV FILE prog.php
+ENV EXEC php $FILE
 
 ENV DEV /home/dev
 
