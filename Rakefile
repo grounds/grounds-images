@@ -25,7 +25,7 @@ def build(dockerfile)
 end
 
 def push(dockerfiles)
-  `docker pull #{image_name(dockerfile)}`
+  `docker push #{image_name(dockerfile)}`
 end
 
 def pull(dockerfiles)
