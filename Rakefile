@@ -21,15 +21,15 @@ task :pull do
 end
 
 def build(dockerfile)
-  `docker build -f #{dockerfile} -t #{image_name(dockerfile)} #{IMAGE_DIR}`
+  sh "docker build -f #{dockerfile} -t #{image_name(dockerfile)} #{IMAGE_DIR}"
 end
 
 def push(dockerfile)
-  `docker push #{image_name(dockerfile)}`
+  sh "docker push #{image_name(dockerfile)}"
 end
 
 def pull(dockerfile)
-  `docker pull #{image_name(dockerfile)}`
+  sh "docker pull #{image_name(dockerfile)}"
 end
 
 def image_name(dockerfile)
