@@ -1,5 +1,6 @@
 REPOSITORY      = ENV.fetch('REPOSITORY', 'grounds')
 TAG             = ENV.fetch('TAG', 'latest')
+LANGUAGE        = ENV.fetch('LANGUAGE', '')
 
 IMAGE_DIR       = 'dockerfiles'
 IMAGE_EXTENSION = 'docker'
@@ -38,6 +39,14 @@ def image_name(dockerfile)
             .gsub("/", "/#{IMAGE_PREFIX}-")
 end
 
+def language(dockerfile)
+  dockerfile.gsub("#{IMAGE_DIR}", '')
+            .gsub(".#{IMAGE_EXTENSION}", '')
+            .gsub('/', '')
+end
+
 def dockerfiles
-  Dir.glob("#{IMAGE_DIR}/*.#{IMAGE_EXTENSION}")
+  Dir.glob("#{IMAGE_DIR}/*.#{IMAGE_EXTENSION}").select do |file|
+    LANGUAGE.empty? || language(file) == LANGUAGE
+  end
 end
