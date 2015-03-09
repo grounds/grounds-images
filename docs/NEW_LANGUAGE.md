@@ -17,13 +17,13 @@ dockerfiles
 
 Each image has:
 
-- A `Dockerfile` named like:
+- A `Dockerfile` following the naming convention:
 
-    $LANGUAGE_CODE.docker
+        $LANGUAGE_CODE.docker
     
-e.g.
+    e.g.
 
-    php.docker
+        php.docker
 
 - A shell script `run.sh` that must be copied inside every image.
 
