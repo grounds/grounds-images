@@ -6,5 +6,6 @@ machine:
 
 dependencies:
   override:
-    - sudo wget $BIN_URL -O $BIN_PATH && chmod +x $BIN_PATH
+    - sudo wget $BIN_URL -O $BIN_PATH
+    - sudo chmod +x $BIN_PATH
     - rake build
