@@ -1,11 +1,19 @@
 # Install latest docker client
 machine:
-  environment:
-   BIN_URL: "https://get.docker.com/builds/Linux/x86_64/docker-latest"
-   BIN_PATH: "/usr/local/bin/docker"
+  pre:
+   - wget "https://get.docker.com/builds/Linux/x86_64/docker-latest" -O /bin/docker
+   - chmod +x /bin/docker
 
 dependencies:
   override:
-    - sudo wget $BIN_URL -O $BIN_PATH
-    - sudo chmod +x $BIN_PATH
     - rake build
+    
+test:
+  override:
+    - rake test
+
+deployment:
+  hub:
+    branch: master
+    commands:
+        - rake push

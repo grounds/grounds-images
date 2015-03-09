@@ -9,6 +9,9 @@ task :build do
   dockerfiles.each(&method(:build))
 end
 
+task :test do
+end
+
 task :push do
   dockerfiles.each(&method(:push))
 end
