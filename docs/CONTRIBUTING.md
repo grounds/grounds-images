@@ -19,5 +19,5 @@ automatically, but the reviewers will not be notified unless you comment.
 
 Pull requests must be cleanly rebased ontop of master without multiple branches mixed into the PR.
 
-Commits that fix or close an issue should include a reference like `Closes #XXXX` or Fixes `#XXXX`, which will automatically close the issue 
+Commits that fix or close an issue should include a reference like `Closes #XXXX` or Fixes `#XXXX`, which will automatically close the issue
 when merged.

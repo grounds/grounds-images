@@ -11,7 +11,7 @@ dockerfiles
 ├─── ruby.docker
 │
 └─── golang.docker
-|   
+|
 └─── run.sh
 ```
 
@@ -20,7 +20,7 @@ Each image has:
 - A `Dockerfile` following the naming convention:
 
         $LANGUAGE_CODE.docker
-    
+
     e.g.
 
         php.docker
@@ -35,7 +35,7 @@ Images are built has an executable Docker image. This allow us to do:
 
     $ docker run grounds/exec-ruby "puts 42"
     42
-    
+
 ## Run.sh
 
 This script writes into a file the content of the first argument into a file
@@ -58,8 +58,9 @@ Add a `Dockerfile` inside images directory:
 
 ### Inside the Dockerfile:
 
-Checkout first [here](https://github.com/docker-library). If there is an official image for the language
-stack you are trying to add, just inherit from the latest tag of the official image and skip to step 4:
+Checkout first [here](https://github.com/docker-library).
+If there is an official image for the language stack you are trying to add,
+just inherit from the latest tag of the official image and skip to step 4:
 
     FROM python:latest
 
@@ -72,7 +73,7 @@ If there is no official image for this language stack:
 2. Update ubuntu package manager:
 
         RUN apt-get update -qq
-    
+
     >Use apt-get update quiet mode level 2 (with `--qq`)
 
 3. Install dependencies required to compile C code (e.g `gcc`)
@@ -120,11 +121,9 @@ When you run a Docker container with this image:
 - The user of this container will be `dev`
 - This container will run `run.sh` and takes as parameter a string whith arbitrary code inside.
 
-### Build the image
+### Build this image:
 
-Build the image like you usually do with Docker:
-
-    $ docker build -t grounds/exec-c dockerfiles/c
+    $ LANGUAGE="c" rake build
 
 ### Tests
 

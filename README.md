@@ -26,32 +26,20 @@ about how to add support for a new language stack.
 
 ## Prerequisite
 
-You need [Ruby 2.0+](http://www.ruby-lang.org), and [Bundler](http://bundler.io/)
-to run this project.
+You need [Rake](https://github.com/ruby/rake), and
+[Docker](https://www.docker.com/) to run this project.
 
-Configure Docker URL:
-
-    export DOCKER_URL="http://127.0.0.1:2375"
-
-You can instead set:
-
-* `DOCKER_HOST`
-* `DOCKER_CERT_PATH`
-* `DOCKER_TLS_VERIFY`
-
->If you are using `boot2docker`, it should work out of the box.
-
-Install dependencies:
-
-    bundle install
-
-Build Docker images:
+## Build Docker images
 
     rake build
 
 You can also build these images for your own repository:
 
     REPOSITORY="tintin" rake build
+
+You can also build only a specific image:
+
+    LANGUAGE="ruby" rake build
 
 If you do so, please prefix use `REPOSITORY` environment variables for every rake
 tasks.
@@ -68,22 +56,26 @@ e.g. For `ruby`:
 
 ## Push / Pull
 
-First set this environment variables to authenticate with your docker registry:
-
-* `HUB_USERNAME`
-* `HUB_PASSWORD`
-* `HUB_EMAIL`
-
 To push these images to a docker registry:
 
     REPOSITORY="tintin" rake push
+
+You can also push only a specific image:
+
+    LANGUAGE="ruby" rake push
 
 To pull these images from a docker registry:
 
     REPOSITORY="tintin" rake pull
 
+You can also pull only a specific image:
+
+    LANGUAGE="ruby" rake pull
+
 >Default `REPOSITORY` is set to Grounds official organization on the Docker
-[Hub](http://registry.hub.docker.com/repos/grounds/).
+[Hub](http://registry.hub.docker.com/repos/grounds/). You don't and you
+can't push to this repository. These images are automatically pushed if the
+test suite pass.
 
 ## Tests
 
