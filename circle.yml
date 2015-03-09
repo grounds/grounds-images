@@ -1,8 +1,8 @@
 # Install latest docker client
 machine:
   pre:
-   - wget "https://get.docker.com/builds/Linux/x86_64/docker-latest" -O /bin/docker
-   - chmod +x /bin/docker
+   - sudo wget "https://get.docker.com/builds/Linux/x86_64/docker-latest" -O /bin/docker
+   - sudo chmod +x /bin/docker
 
 dependencies:
   override:
