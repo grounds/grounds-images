@@ -1,11 +1,10 @@
-# Install docker client only
+# Install latest docker client
 machine:
   environment:
    BIN_URL: "https://get.docker.com/builds/Linux/x86_64/docker-latest"
    BIN_PATH: "/usr/local/bin/docker"
-  pre:
-    - sudo wget $BIN_URL -O $BIN_PATH && chmod +x $BIN_PATH
 
 dependencies:
   override:
+    - sudo wget $BIN_URL -O $BIN_PATH && chmod +x $BIN_PATH
     - rake build
