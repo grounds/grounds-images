@@ -17,3 +17,4 @@ deployment:
     branch: master
     commands:
       - rake push
+      - DOCKER_HOST=$DEPLOY_HOST rake pull
