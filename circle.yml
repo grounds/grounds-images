@@ -16,4 +16,4 @@ deployment:
   hub:
     branch: master
     commands:
-        - rake push
+      - rake push
