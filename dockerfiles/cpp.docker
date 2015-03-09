@@ -12,5 +12,5 @@ RUN chown -R dev: $DEV
  
 USER dev
 WORKDIR $DEV
- 
+
 ENTRYPOINT ["./run.sh"]
