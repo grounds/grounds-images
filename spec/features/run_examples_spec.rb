@@ -16,10 +16,10 @@ describe 'Run code examples' do
   end
 
   def run(language, code)
-    `docker run -t grounds/exec-#{language} '#{code}'`.chomp
+    `docker run -t #{image_name(language)} '#{code}'`.chomp
   end
 
   def image_name(language)
-
+    "#{REPOSITORY}/#{IMAGE_PREFIX}-#{language}"
   end
 end
