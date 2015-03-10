@@ -94,11 +94,11 @@ If there is no official image for this language stack:
 
     * If you need to compile the program:
 
-        ENV COMPILE gcc -o prog $FILE
+                ENV COMPILE gcc -o prog $FILE
 
     * Run the interpreter or the program:
 
-        ENV EXEC ./prog
+                ENV EXEC ./prog
 
 6. Set development directory in env:
 
