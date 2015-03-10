@@ -40,9 +40,8 @@ def image_name(dockerfile)
 end
 
 def language(dockerfile)
-  dockerfile.gsub("#{IMAGE_DIR}", '')
+  dockerfile.gsub("#{IMAGE_DIR}/", '')
             .gsub(".#{IMAGE_EXTENSION}", '')
-            .gsub('/', '')
 end
 
 def dockerfiles

@@ -39,13 +39,17 @@ Images are built has an executable Docker image. This allow us to do:
 ## Run.sh
 
 This script writes into a file the content of the first argument into a file
-specified by environment variable `FILE` and then execute the command specified
-by environment variable `EXEC`.
+specified by environment variable `FILE`, compile with `COMPILE`command if specified
+and then execute the command specified by environment variable `EXEC`.
 
 e.g.
 
-    FILE='prog.rb' EXEC='ruby prog.rb' ./run.sh 'puts "hello world"'
+    FILE='prog.rb' \
+    EXEC='ruby prog.rb' ./run.sh '<some ruby code>'
 
+    FILE='prog.cpp' \
+    COMPILE='gcc -o prog prog.c' \
+    EXEC='./prog' ./run.sh '<some c code>'
 
 ## Create an image
 
@@ -88,7 +92,13 @@ If there is no official image for this language stack:
 
 5. Specify compiler/interpreter command:
 
-        ENV EXEC gcc -o prog $FILE && ./prog
+    * If you need to compile the program:
+
+        ENV COMPILE gcc -o prog $FILE
+
+    * Run the interpreter or the program:
+
+        ENV EXEC ./prog
 
 6. Set development directory in env:
 
