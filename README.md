@@ -26,8 +26,8 @@ about how to add support for a new language stack.
 
 ## Prerequisite
 
-You need [Rake](https://github.com/ruby/rake), and
-[Docker](https://www.docker.com/) to run this project.
+You need [Bundler](http://bundler.io/), and
+[Docker 1.5+](https://www.docker.com/) to run this project.
 
 ## Build Docker images
 

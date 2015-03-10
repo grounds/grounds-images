@@ -1,16 +1,11 @@
-REPOSITORY      = ENV.fetch('REPOSITORY', 'grounds')
-TAG             = ENV.fetch('TAG', 'latest')
-LANGUAGE        = ENV.fetch('LANGUAGE', '')
-
-IMAGE_DIR       = 'dockerfiles'
-IMAGE_EXTENSION = 'docker'
-IMAGE_PREFIX    = 'exec'
+require './spec/support/constants'
 
 task :build do
   dockerfiles.each(&method(:build))
 end
 
 task :test do
+  sh "bundle exec rspec --format documentation --color"
 end
 
 task :push do

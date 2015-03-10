@@ -1,7 +1,7 @@
 FROM java:latest
 
 ENV FILE Main.java
-ENV COMPILE javac && $FILE
+ENV COMPILE javac $FILE
 ENV EXEC java Main
 
 ENV DEV /home/dev
