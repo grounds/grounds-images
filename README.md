@@ -29,6 +29,10 @@ about how to add support for a new language stack.
 You need [Bundler](http://bundler.io/), and
 [Docker 1.5+](https://www.docker.com/) to run this project.
 
+Install dependencies:
+
+    bundle install
+
 ## Build Docker images
 
     rake build

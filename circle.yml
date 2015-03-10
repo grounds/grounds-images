@@ -6,6 +6,7 @@ machine:
 
 dependencies:
   override:
+    - bundle install
     - rake build
 
 test:
