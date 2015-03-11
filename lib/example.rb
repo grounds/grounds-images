@@ -1,7 +1,7 @@
-CODE_DIR   = 'examples/code'
-OUTPUT_DIR = 'examples/output'
-
 class Example
+  CODE_DIR   = 'examples/code'
+  OUTPUT_DIR = 'examples/output'
+
   attr_reader :language, :title, :code, :output
 
   def initialize(language, name)

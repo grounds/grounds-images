@@ -96,7 +96,7 @@ To run the test suite:
 
     rake test
 
-To run the test suite for a specific language:
+To run tests only for a specific language:
 
     LANGUAGE="ruby" rake test
 
