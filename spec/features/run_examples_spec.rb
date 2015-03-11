@@ -15,6 +15,17 @@ describe 'Run code examples' do
 
   end
 
+  # Skip this test if language != golang?
+  context "with code that doesn't compile" do
+    let(:code) { '' }
+
+    it "doesn't try to run the program" do
+      output = run('golang', code)
+
+      expect(output).not_to have('./prog ...')
+    end
+  end
+
   def run(language, code)
     `docker run -t #{image_name(language)} '#{code}'`.chomp
   end
