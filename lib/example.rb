@@ -2,39 +2,41 @@ class Example
   CODE_DIR   = 'examples/code'
   OUTPUT_DIR = 'examples/output'
 
-  attr_reader :language, :title, :code, :output
+  attr_reader :filename
 
-  def initialize(language, name)
-    @language = language
-    @name     = name
-    @title    = File.basename(name, File.extname(name))
-    @output   = File.read("#{OUTPUT_DIR}/#{@title}").chomp
-    @code     = formated_code
+  def initialize(filename)
+    @filename = filename
   end
 
-  def formated_code
-    File.read("#{CODE_DIR}/#{@language}/#{@name}")
-          .chomp
-          .gsub('\\', '\\\\\\')
-          .gsub("\n", '\\n')
-          .gsub("\r", '\\r')
-          .gsub("\t", '\\t')
-          .gsub("'", '"')
+  def code
+    File.read(@filename)
+        .chomp
+        .gsub('\\', '\\\\\\')
+        .gsub("\n", '\\n')
+        .gsub("\r", '\\r')
+        .gsub("\t", '\\t')
+        .gsub("'", '"')
   end
-
+  
+  def language
+    @filename.gsub("#{CODE_DIR}/", '')
+             .gsub("/#{title}#{extension}", '')
+  end
+  
+  def title
+    File.basename(@filename, extension)
+  end
+  
+  def extension
+    File.extname(@filename)
+  end
+  
+  def output
+    File.read("#{OUTPUT_DIR}/#{title}").chomp
+  end
+  
   def self.all
-    # Get language code directories.
-    dirs = Dir.entries(CODE_DIR).select do |entry|
-      !File.file?(entry) && entry != '.' && entry != '..'
-    end
-    examples = []
-    # Get files to test.
-    dirs.each do |dir|
-      Dir.entries("#{CODE_DIR}/#{dir}").each do |entry|
-        examples << new(dir, entry) if entry != '.' && entry != '..'
-      end
-    end
-    examples
+    Dir.glob("#{CODE_DIR}/*/*").map(&method(:new))
   end
 
   def self.find(language)

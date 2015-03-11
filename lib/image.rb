@@ -5,19 +5,14 @@ class Image
   EXTENSION = 'docker'
   PREFIX    = 'exec'
 
-  attr_reader :file, :name, :language
+  attr_reader :filename
 
-  def initialize(file)
-    @file     = file
-    @name     = file.gsub("#{DIR}", REPOSITORY)
-                    .gsub(".#{EXTENSION}", ":#{TAG}")
-                    .gsub("/", "/#{PREFIX}-")
-    @language = file.gsub("#{DIR}/", '')
-                    .gsub(".#{EXTENSION}", '')
+  def initialize(filename)
+    @filename = filename
   end
 
   def build
-    system "docker build -f #{@file} -t #{@name} #{DIR}"
+    system "docker build -f #{@filename} -t #{@name} #{DIR}"
   end
 
   def push
@@ -27,11 +22,20 @@ class Image
   def pull
     system "docker pull #{@name}"
   end
+  
+  def name
+    @filename.gsub("#{DIR}", REPOSITORY)
+             .gsub(".#{EXTENSION}", ":#{TAG}")
+             .gsub("/", "/#{PREFIX}-")
+  end
+  
+  def language
+    @filename.gsub("#{DIR}/", '')
+             .gsub(".#{EXTENSION}", '')
+  end
 
   def self.all
-    Dir.glob("#{DIR}/*.#{EXTENSION}").map do |file|
-      new(file)
-    end
+    Dir.glob("#{DIR}/*.#{EXTENSION}").map(&method(:new))
   end
 
   def self.find(language)
