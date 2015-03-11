@@ -5,10 +5,15 @@ class Image
   EXTENSION = 'docker'
   PREFIX    = 'exec'
 
-  attr_reader :filename
+  attr_reader :filename, :name, :language
 
   def initialize(filename)
     @filename = filename
+    @name     = filename.gsub("#{DIR}", REPOSITORY)
+                        .gsub(".#{EXTENSION}", ":#{TAG}")
+                        .gsub("/", "/#{PREFIX}-")
+    @language = filename.gsub("#{DIR}/", '')
+                        .gsub(".#{EXTENSION}", '')
   end
 
   def build
@@ -21,17 +26,6 @@ class Image
 
   def pull
     system "docker pull #{@name}"
-  end
-  
-  def name
-    @filename.gsub("#{DIR}", REPOSITORY)
-             .gsub(".#{EXTENSION}", ":#{TAG}")
-             .gsub("/", "/#{PREFIX}-")
-  end
-  
-  def language
-    @filename.gsub("#{DIR}/", '')
-             .gsub(".#{EXTENSION}", '')
   end
 
   def self.all

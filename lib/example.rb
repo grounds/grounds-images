@@ -2,10 +2,14 @@ class Example
   CODE_DIR   = 'examples/code'
   OUTPUT_DIR = 'examples/output'
 
-  attr_reader :filename
+  attr_reader :filename, :title, :language
 
   def initialize(filename)
-    @filename = filename
+    @filename  = filename
+    @extension = File.extname(filename)
+    @title     = File.basename(filename, @extension)
+    @language  = filename.gsub("#{CODE_DIR}/", '')
+                         .gsub("/#{@title}#{@extension}", '')
   end
 
   def code
@@ -18,21 +22,8 @@ class Example
         .gsub("'", '"')
   end
   
-  def language
-    @filename.gsub("#{CODE_DIR}/", '')
-             .gsub("/#{title}#{extension}", '')
-  end
-  
-  def title
-    File.basename(@filename, extension)
-  end
-  
-  def extension
-    File.extname(@filename)
-  end
-  
   def output
-    File.read("#{OUTPUT_DIR}/#{title}").chomp
+    File.read("#{OUTPUT_DIR}/#{@title}").chomp
   end
   
   def self.all
