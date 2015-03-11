@@ -27,8 +27,8 @@ about how to add support for a new language stack.
 
 ## Prerequisite
 
-You need [Bundler](http://bundler.io/), and
-[Docker 1.5+](https://www.docker.com/) to run this project.
+You need [Ruby 2.0+](http://www.ruby-lang.org), [Bundler](http://bundler.io/), 
+and [Docker 1.5+](https://www.docker.com/) to run this project.
 
 ### Clone this project
 
