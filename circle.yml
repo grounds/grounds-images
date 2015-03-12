@@ -5,8 +5,7 @@ machine:
    - sudo chmod +x /usr/local/bin/docker
 
 dependencies:
-  override:
-    - bundle install
+  post:
     - rake build
 
 test:
