@@ -1,3 +1,5 @@
+# This file is meant to be installed in ruby image. 
+#
 # Output should be flushed immediately to the underlying operating system
 # and not buffered internally.
 #
