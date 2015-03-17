@@ -133,11 +133,11 @@ When you run a Docker container with this image:
 
 **N.B. If you have some custom files that should be in the image:**
 
-1. Create a directory for this image, in your shell:
+1. Create a directory for this image:
 
         mkdir dockerfiles/ruby
 
-2. Add your file inside this directory.
+2. Add your files inside this directory.
 
 3. Copy this directory inside the image:
 
