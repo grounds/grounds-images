@@ -5,11 +5,13 @@ RUN gem install rails --version 4.2
 ENV FILE prog.rb
 ENV EXEC ruby $FILE
 
-ENV DEV /home/dev
-ENV RUBYOPT -r $DEV/sync.rb
+COPY ruby /custom
 
-# We also need sync.rb file to capture output in real time
-COPY . $DEV
+ENV RUBYOPT -r /custom/sync.rb
+
+ENV DEV /home/dev
+
+COPY run.sh $DEV/run.sh
 
 RUN useradd dev
 RUN chown -R dev: $DEV
