@@ -131,6 +131,20 @@ When you run a Docker container with this image:
 - The user of this container will be `dev`
 - This container will run `run.sh` and takes as parameter a string whith arbitrary code inside.
 
+**N.B. If you have some custom files that should be in the image:**
+
+1. Create a directory for this image, in your shell:
+
+        mkdir dockerfiles/ruby
+
+2. Add your file inside this directory.
+
+3. Copy this directory inside the image:
+
+    e.g. For ruby, add in `dockerfiles/ruby.docker`:
+
+        COPY ruby /custom
+
 ### Build this image:
 
     $ LANGUAGE="c" rake build
