@@ -2,7 +2,7 @@ $LOAD_PATH.unshift File.expand_path('../lib', __FILE__)
 
 require 'image'
 
-images = LANGUAGE.empty? ? Image.all : Image.find(LANGUAGE)
+images = LANGUAGE.empty? ? Image.only_changed : Image.find(LANGUAGE)
 
 task :build do
   images.each(&:build)

@@ -39,4 +39,17 @@ class Image
   def self.name(language)
     "#{REPOSITORY}/#{PREFIX}-#{language}"
   end
+
+  def self.only_changed
+    languages = []
+    diff = `git diff --name-only`
+    diff.split(/\r?\n/).each {|line| 
+      if line.start_with?('example', DIR)
+        languages.push line.gsub("([^\/:]+)\/[^\/]+$", "") + ".#{EXTENSION}"
+      elsif line.start_with?(DIR)
+        languages.push line.gsub("\/(.[[:alpha:]]+)", "") + ".#{EXTENSION}"
+      end}
+    return find 'ruby'  if languages.empty?
+    languages.map(&method(:new))
+  end
 end
