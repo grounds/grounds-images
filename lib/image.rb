@@ -42,15 +42,15 @@ class Image
 
   def self.only_changed
     languages = []
-    diff = `git diff --name-only`
-          puts "DEBUG " + diff
+    diff = `git diff HEAD^ HEAD --name-only`
+          puts "DEBUG " + diff.inspect
     diff.split(/\r?\n/).each {|line| 
-      if line.start_with?('example', DIR)
+      if line.start_with?('example')
         languages.push line.gsub("([^\/:]+)\/[^\/]+$", "") + ".#{EXTENSION}"
       elsif line.start_with?(DIR)
-        languages.push line.gsub("\/(.[[:alpha:]]+)", "") + ".#{EXTENSION}"
+        languages.push line.gsub("\/(.[[:alpha:]]+)", "")
       end}
-      puts "DEBUG " + languages
+      puts "DEBUG " + languages.to_s
     return find 'ruby'  if languages.empty?
     languages.map(&method(:new))
   end
