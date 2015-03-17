@@ -46,7 +46,7 @@ class Image
           puts "DEBUG " + diff.inspect
     diff.split(/\r?\n/).each {|line| 
       if line.start_with?('example')
-        languages.push line.gsub("([^\/:]+)\/[^\/]+$", "") + ".#{EXTENSION}"
+        languages.push line["([^\/:]+)\/[^\/]+$"] + ".#{EXTENSION}"
       elsif line.start_with?(DIR)
         languages.push line.gsub("\/(.[[:alpha:]]+)", "")
       end}
