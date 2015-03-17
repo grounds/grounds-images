@@ -4,6 +4,8 @@ machine:
    - sudo wget "https://get.docker.com/builds/Linux/x86_64/docker-latest" -O /usr/local/bin/docker
    - sudo chmod +x /usr/local/bin/docker
 
+# By default, Circle CI already takes care
+# of bundle install.
 dependencies:
   post:
     - rake build
