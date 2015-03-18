@@ -104,9 +104,9 @@ If there is no official image for this language stack:
 
         ENV DEV /home/dev
 
-7. Copy the script `run.sh` inside the development directory:
+7. Copy the shared files inside the development directory:
 
-        COPY run.sh $DEV/run.sh
+        COPY shared/* $DEV
 
 8. Add a user and give him access to the development directory:
 
