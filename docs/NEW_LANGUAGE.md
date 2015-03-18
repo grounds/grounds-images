@@ -106,7 +106,7 @@ If there is no official image for this language stack:
 
 7. Copy the shared files inside the development directory:
 
-        COPY shared/* $DEV
+        COPY shared/* $DEV/
 
 8. Add a user and give him access to the development directory:
 

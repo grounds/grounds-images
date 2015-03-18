@@ -11,7 +11,7 @@ ENV RUBYOPT -r /custom/sync.rb
 
 ENV DEV /home/dev
 
-COPY shared/* $DEV
+COPY shared/* $DEV/
 
 RUN useradd dev
 RUN chown -R dev: $DEV
