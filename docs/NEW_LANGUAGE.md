@@ -12,7 +12,13 @@ dockerfiles
 │
 └─── golang.docker
 |
-└─── run.sh
+└─── ruby
+|      |
+|      └─── sync.rb
+|
+└─── shared
+        |
+        └─── run.sh
 ```
 
 Each image has:
@@ -25,7 +31,7 @@ Each image has:
 
         php.docker
 
-- A shell script `run.sh` that must be copied inside every image.
+- A shell script `run.sh` (in `shared` directory).
 
 Images are following this naming convention:
 
@@ -36,7 +42,7 @@ Images are built has an executable Docker image. This allow us to do:
     $ docker run grounds/exec-ruby "puts 42"
     42
 
-## Run.sh
+## run.sh
 
 This script writes into a file the content of the first argument into a file
 specified by environment variable `FILE`, compile with `COMPILE`command if specified
