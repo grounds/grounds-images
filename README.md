@@ -1,5 +1,5 @@
 # Grounds Images
-[![Circle CI](https://circleci.com/gh/grounds/grounds-images.svg?style=svg)](https://circleci.com/gh/grounds/grounds-images)
+[![Circle CI](https://circleci.com/gh/grounds/grounds-images/tree/master.svg?style=svg)](https://circleci.com/gh/grounds/grounds-images/tree/master)
 
 This is the official repository of [Grounds](http://beta.42grounds.io) code
 [runner](http://github.com/grounds/grounds-exec) Docker images.
