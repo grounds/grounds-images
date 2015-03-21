@@ -1,5 +1,7 @@
 FROM ruby:latest
 
+MAINTAINER Adrien Folie <folie.adrien@gmail.com>
+
 RUN gem install rails --version 4.2
 
 ENV FILE prog.rb

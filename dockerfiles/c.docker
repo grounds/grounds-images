@@ -1,5 +1,7 @@
 FROM gcc:latest
 
+MAINTAINER Adrien Folie <folie.adrien@gmail.com>
+
 ENV FILE prog.c
 ENV COMPILE gcc -o prog $FILE
 ENV EXEC ./prog

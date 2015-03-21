@@ -1,5 +1,7 @@
 FROM python:latest
 
+MAINTAINER Adrien Folie <folie.adrien@gmail.com>
+
 ENV FILE prog.py
 ENV EXEC python3 $FILE
 

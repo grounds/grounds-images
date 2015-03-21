@@ -1,5 +1,7 @@
 FROM node:latest
 
+MAINTAINER Adrien Folie <folie.adrien@gmail.com>
+
 ENV FILE prog.js
 ENV EXEC node $FILE
 

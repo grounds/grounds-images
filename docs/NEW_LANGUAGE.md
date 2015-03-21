@@ -80,23 +80,27 @@ If there is no official image for this language stack:
 
         FROM ubuntu:14.04
 
-2. Update ubuntu package manager:
+2. Add yourself as a maintainer of this image:
+
+        MAINTAINER Adrien Folie <folie.adrien@gmail.com>
+
+3. Update ubuntu package manager:
 
         RUN apt-get update -qq
 
     >Use apt-get update quiet mode level 2 (with `--qq`)
 
-3. Install dependencies required to compile C code (e.g `gcc`)
+4. Install dependencies required to compile C code (e.g `gcc`)
 
         RUN apt-get -qy install \
             build-essential \
             gcc
 
-4. Specify file format:
+5. Specify file format:
 
         ENV FILE prog.c
 
-5. Specify compiler/interpreter command:
+6. Specify compiler/interpreter command:
 
     * If you need to compile the program:
 
@@ -106,28 +110,28 @@ If there is no official image for this language stack:
 
                 ENV EXEC ./prog
 
-6. Set development directory in env:
+7. Set development directory in env:
 
         ENV DEV /home/dev
 
-7. Copy the shared files inside the development directory:
+8. Copy the shared files inside the development directory:
 
         COPY shared/* $DEV/
 
-8. Add a user and give him access to the development directory:
+9. Add a user and give him access to the development directory:
 
         RUN useradd dev
         RUN chown -R dev: $DEV
 
-9. Switch to this user:
+10. Switch to this user:
 
         USER dev
 
-10. Set working directory:
+11. Set working directory:
 
         WORKDIR $DEV
 
-11. Configure this image as an executable:
+12. Configure this image as an executable:
 
         ENTRYPOINT ["./run.sh"]
 

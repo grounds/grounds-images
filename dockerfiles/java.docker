@@ -1,5 +1,7 @@
 FROM java:latest
 
+MAINTAINER Adrien Folie <folie.adrien@gmail.com>
+
 ENV FILE Main.java
 ENV COMPILE javac $FILE
 ENV EXEC java Main
