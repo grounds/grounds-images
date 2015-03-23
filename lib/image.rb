@@ -17,15 +17,15 @@ class Image
   end
 
   def build
-    system "docker build -f #{@filename} -t #{@name} #{DIR}"
+    sh "docker build -f #{@filename} -t #{@name} #{DIR}"
   end
 
   def push
-    system "docker push #{@name}"
+    sh "docker push #{@name}"
   end
 
   def pull
-    system "docker pull #{@name}"
+    sh "docker pull #{@name}"
   end
 
   def self.all
@@ -38,5 +38,11 @@ class Image
 
   def self.name(language)
     "#{REPOSITORY}/#{PREFIX}-#{language}"
+  end
+
+  private
+
+  def sh(cmd)
+    abort unless system(cmd)
   end
 end
