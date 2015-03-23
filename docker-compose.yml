@@ -1,0 +1,10 @@
+dev:
+  build: .
+  volumes:
+    - '$DOCKER_CERT_PATH:/home/.docker'
+    - '/var/run/docker.sock:/var/run/docker.sock'
+    - '.:/grounds-images'
+  environment:
+    - DOCKER_HOST
+    - DOCKER_CERT_PATH=/home/.docker
+    - DOCKER_TLS_VERIFY
