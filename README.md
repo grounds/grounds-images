@@ -27,8 +27,8 @@ about how to add support for a new language stack.
 
 ## Prerequisite
 
-You need [Ruby 2.0+](http://www.ruby-lang.org), [Bundler](http://bundler.io/), 
-and [Docker 1.5+](https://www.docker.com/) to run this project.
+You need [Docker 1.5+](https://www.docker.com/) and
+[Docker Compose 1.1+](https://docs.docker.com/compose/) to run this project.
 
 ### Clone this project
 
@@ -38,8 +38,19 @@ and [Docker 1.5+](https://www.docker.com/) to run this project.
 
     cd grounds-images
 
-### Install dependencies:
+### Preconfigured environment:
 
+To get a preconfigured environment to work with:
+
+    docker-compose build && docker-compose run dev
+
+>N.B. Project directory is mounted inside the container, you can edit you files
+from your machine directly without rebuilding the image.
+
+If you already have [Ruby 2.0+](http://www.ruby-lang.org) on your machine you
+can also install dependencies and work directly on your machine:
+
+    gem install bundler
     bundle install
 
 ## Build Docker images
