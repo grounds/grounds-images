@@ -44,7 +44,7 @@ To get a preconfigured develoment environment:
 
     docker-compose build && docker-compose run dev
 
->N.B. Project directory is mounted inside the container, you can edit you files
+>N.b. Project directory is mounted inside the container, you can edit you files
 from your machine directly without rebuilding the image.
 
 If you already have [Ruby 2.0+](http://www.ruby-lang.org) on your machine you
