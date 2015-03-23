@@ -38,9 +38,9 @@ You need [Docker 1.5+](https://www.docker.com/) and
 
     cd grounds-images
 
-### Preconfigured environment:
+### Dev
 
-To get a preconfigured environment to work with:
+To get a preconfigured develoment environment:
 
     docker-compose build && docker-compose run dev
 
