@@ -3,7 +3,7 @@ FROM ubuntu:14.04
 MAINTAINER Adrien Folie <folie.adrien@gmail.com>
 
 RUN apt-get update -qq && \
-    apt-get -qy install \
+    apt-get install -qy \
     mono-mcs
 
 ENV FILE prog.cs
