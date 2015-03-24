@@ -4,10 +4,19 @@ require 'image'
 
 images = LANGUAGE.empty? ? Image.all : Image.find(LANGUAGE)
 
-%i(build push pull).each do |taskname|
-  task taskname do
-    images.each(&taskname)
-  end
+desc 'Build Docker image(s)'
+task :build do
+  images.each(&:build)
+end
+
+desc 'Push Docker image(s) to the registry'
+task :push do
+  images.each(&:push)
+end
+
+desc 'Pull Docker image(s) from the registry'
+task :pull do
+  images.each(&:pull)
 end
 
 task :test do
