@@ -4,16 +4,10 @@ require 'image'
 
 images = LANGUAGE.empty? ? Image.all : Image.find(LANGUAGE)
 
-task :build do
-  images.each(&:build)
-end
-
-task :push do
-  images.each(&:push)
-end
-
-task :pull do
-  images.each(&:pull)
+%i(build push pull).each do |taskname|
+  task taskname do
+    images.each(&taskname)
+  end
 end
 
 task :test do
