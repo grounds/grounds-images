@@ -1,6 +1,6 @@
 # Authors
 
-* [Adrien Folie](https://github.com/folieadrien) - Core maintainer.
+* [Adrien Folie](https://github.com/foliea) - Core maintainer.
 * [Gaetan Gueraud](https://github.com/exadeci) - Core maintainer.
 
 *For a list of people who have contributed to the codebase, see
