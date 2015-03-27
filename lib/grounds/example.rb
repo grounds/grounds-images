@@ -31,6 +31,6 @@ class Grounds::Example
   end
 
   def self.find(language)
-    all.select { |ex| ex.language == language }
+    all.select { |ex| language == 'all' || ex.language == language }
   end
 end

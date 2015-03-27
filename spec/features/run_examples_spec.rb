@@ -1,7 +1,6 @@
-require 'image'
-require 'example'
+require 'grounds'
 
-examples = LANGUAGE.empty? ? Example.all : Example.find(LANGUAGE)
+examples = Grounds::Example.find(Grounds.language)
 
 describe 'Run code examples' do
 
@@ -16,6 +15,6 @@ describe 'Run code examples' do
   end
 
   def run(language, code)
-    `docker run -t #{Image.name(language)} '#{code}'`.chomp
+    `docker run -t #{Grounds::Image.name(language)} '#{code}'`.chomp
   end
 end

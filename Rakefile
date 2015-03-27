@@ -1,9 +1,9 @@
 $LOAD_PATH.unshift File.expand_path('../lib', __FILE__)
 
 require 'rspec/core/rake_task'
-require 'image'
+require 'grounds'
 
-images = LANGUAGE.empty? ? Image.all : Image.find(LANGUAGE)
+images = Grounds::Image.find(Grounds.language)
 
 desc 'Build Docker image(s)'
 task :build do
@@ -27,7 +27,7 @@ begin
   require 'rspec/core/rake_task'
 
   RSpec::Core::RakeTask.new(:test) do |t|
-    t.rspec_opts = "--format documentation --color #{TEST_OPTS}"
+    t.rspec_opts = "--format documentation --color #{ENV['TEST_OPTS']}"
     t.verbose    = false
   end
 rescue LoadError

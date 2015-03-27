@@ -1,5 +1,4 @@
-require 'params'
-
+require 'pry'
 class Grounds::Image
   REPOSITORY = ENV.fetch('REPOSITORY', 'grounds')
   TAG        = ENV.fetch('TAG', 'latest')
@@ -35,7 +34,7 @@ class Grounds::Image
   end
 
   def self.find(language)
-    all.select { |lang| language.empty? || language == lang }
+    all.select { |image| language == 'all' || language == image.language }
   end
 
   def self.name(language)
