@@ -1,4 +1,4 @@
-class Example
+class Grounds::Example
   CODE_DIR   = 'examples/code'
   OUTPUT_DIR = 'examples/output'
 
@@ -21,11 +21,11 @@ class Example
         .gsub("\t", '\\t')
         .gsub("'", '"')
   end
-  
+
   def output
     File.read("#{OUTPUT_DIR}/#{@title}").chomp
   end
-  
+
   def self.all
     Dir.glob("#{CODE_DIR}/*/*").map(&method(:new))
   end

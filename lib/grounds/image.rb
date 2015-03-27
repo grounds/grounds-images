@@ -1,9 +1,11 @@
 require 'params'
 
-class Image
-  DIR       = 'dockerfiles'
-  EXTENSION = 'docker'
-  PREFIX    = 'exec'
+class Grounds::Image
+  REPOSITORY = ENV.fetch('REPOSITORY', 'grounds')
+  TAG        = ENV.fetch('TAG', 'latest')
+  DIR        = 'dockerfiles'
+  EXTENSION  = 'docker'
+  PREFIX     = 'exec'
 
   attr_reader :filename, :name, :language
 
@@ -33,7 +35,7 @@ class Image
   end
 
   def self.find(language)
-    [new("#{DIR}/#{language}.#{EXTENSION}")]
+    all.select { |lang| language.empty? || language == lang }
   end
 
   def self.name(language)
