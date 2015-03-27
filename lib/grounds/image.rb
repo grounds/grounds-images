@@ -1,4 +1,3 @@
-require 'pry'
 class Grounds::Image
   REPOSITORY = ENV.fetch('REPOSITORY', 'grounds')
   TAG        = ENV.fetch('TAG', 'latest')
