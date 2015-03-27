@@ -22,7 +22,7 @@ end
 
 task :default => :build
 
-# This Rakefile can be used in an environment where RSpec is unavailable
+# This Rakefile can be used in an environment where RSpec is unavailable.
 begin
   require 'rspec/core/rake_task'
 
