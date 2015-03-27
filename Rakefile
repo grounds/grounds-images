@@ -1,5 +1,6 @@
 $LOAD_PATH.unshift File.expand_path('../lib', __FILE__)
 
+require 'rspec/core/rake_task'
 require 'image'
 
 images = LANGUAGE.empty? ? Image.all : Image.find(LANGUAGE)
@@ -19,6 +20,15 @@ task :pull do
   images.each(&:pull)
 end
 
-task :test do
-  sh "bundle exec rspec --format documentation --color #{TEST_OPTS}"
+task :default => :build
+
+# This Rakefile can be used in an environment where RSpec is unavailable
+begin
+  require 'rspec/core/rake_task'
+
+  RSpec::Core::RakeTask.new(:test) do |t|
+    t.rspec_opts = "--format documentation --color #{TEST_OPTS}"
+    t.verbose    = false
+  end
+rescue LoadError
 end
