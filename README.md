@@ -55,15 +55,15 @@ can also install dependencies and work directly on your machine:
 
 ## Build Docker images
 
-    rake build
+    bundle exec rake build
 
 You can also build these images for your own repository:
 
-    REPOSITORY="tintin" rake build
+    REPOSITORY="tintin" bundle exec rake build
 
 You can also build only a specific image:
 
-    LANGUAGE="ruby" rake build
+    LANGUAGE="ruby" bundle exec rake build
 
 If you do so, please prefix use `REPOSITORY` environment variables for every rake
 tasks.
@@ -82,11 +82,11 @@ e.g. For `ruby`:
 
 To push these images to a docker registry:
 
-    REPOSITORY="tintin" rake push
+    REPOSITORY="tintin" bundle exec rake push
 
 You can also push only a specific image:
 
-    LANGUAGE="ruby" rake push
+    LANGUAGE="ruby" bundle exec rake push
 
 To pull these images from a docker registry:
 
@@ -94,7 +94,7 @@ To pull these images from a docker registry:
 
 You can also pull only a specific image:
 
-    LANGUAGE="ruby" rake pull
+    LANGUAGE="ruby" bundle exec rake pull
 
 >Default `REPOSITORY` is set to Grounds official organization on the Docker
 [Hub](http://registry.hub.docker.com/repos/grounds/). You don't and you
@@ -105,11 +105,11 @@ test suite pass.
 
 To run the test suite:
 
-    rake test
+    bundle exec rake test
 
 To run tests only for a specific language:
 
-    LANGUAGE="ruby" rake test
+    LANGUAGE="ruby" bundle exec rake test
 
 ## Contributing
 
