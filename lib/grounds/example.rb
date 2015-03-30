@@ -1,7 +1,7 @@
 require_relative 'finder'
 
 module Grounds
-  module Example
+  class Example
     include Grounds::Finder
 
     CODE_DIR      = 'examples/code'
