@@ -1,6 +1,11 @@
+require_relative 'finder'
+
 class Grounds::Example
-  CODE_DIR   = 'examples/code'
-  OUTPUT_DIR = 'examples/output'
+  include Grounds::Finder
+
+  CODE_DIR      = 'examples/code'
+  OUTPUT_DIR    = 'examples/output'
+  FILES_PATTERN = "#{CODE_DIR}/*/*"
 
   attr_reader :filename, :title, :language
 
@@ -24,13 +29,5 @@ class Grounds::Example
 
   def output
     File.read("#{OUTPUT_DIR}/#{@title}").chomp
-  end
-
-  def self.all
-    Dir.glob("#{CODE_DIR}/*/*").map(&method(:new))
-  end
-
-  def self.find(language)
-    all.select { |ex| language == 'all' || ex.language == language }
   end
 end

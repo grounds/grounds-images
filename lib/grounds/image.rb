@@ -1,9 +1,14 @@
+require_relative 'finder'
+
 class Grounds::Image
-  REPOSITORY = ENV.fetch('REPOSITORY', 'grounds')
-  TAG        = ENV.fetch('TAG', 'latest')
-  DIR        = 'dockerfiles'
-  EXTENSION  = 'docker'
-  PREFIX     = 'exec'
+  include Grounds::Finder
+
+  REPOSITORY    = ENV.fetch('REPOSITORY', 'grounds')
+  TAG           = ENV.fetch('TAG', 'latest')
+  DIR           = 'dockerfiles'
+  EXTENSION     = 'docker'
+  PREFIX        = 'exec'
+  FILES_PATTERN = "#{DIR}/*.#{EXTENSION}"
 
   attr_reader :filename, :name, :language
 
@@ -26,14 +31,6 @@ class Grounds::Image
 
   def pull
     sh "docker pull #{@name}"
-  end
-
-  def self.all
-    Dir.glob("#{DIR}/*.#{EXTENSION}").map(&method(:new))
-  end
-
-  def self.find(language)
-    all.select { |image| language == 'all' || language == image.language }
   end
 
   def self.name(language)
