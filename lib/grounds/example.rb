@@ -1,33 +1,35 @@
 require_relative 'finder'
 
-class Grounds::Example
-  include Grounds::Finder
+module Grounds
+  module Example
+    include Grounds::Finder
 
-  CODE_DIR      = 'examples/code'
-  OUTPUT_DIR    = 'examples/output'
-  FILES_PATTERN = "#{CODE_DIR}/*/*"
+    CODE_DIR      = 'examples/code'
+    OUTPUT_DIR    = 'examples/output'
+    FILES_PATTERN = "#{CODE_DIR}/*/*"
 
-  attr_reader :filename, :title, :language
+    attr_reader :filename, :title, :language
 
-  def initialize(filename)
-    @filename  = filename
-    @extension = File.extname(filename)
-    @title     = File.basename(filename, @extension)
-    @language  = filename.gsub("#{CODE_DIR}/", '')
-                         .gsub("/#{@title}#{@extension}", '')
-  end
+    def initialize(filename)
+      @filename  = filename
+      @extension = File.extname(filename)
+      @title     = File.basename(filename, @extension)
+      @language  = filename.gsub("#{CODE_DIR}/", '')
+                           .gsub("/#{@title}#{@extension}", '')
+    end
 
-  def code
-    File.read(@filename)
-        .chomp
-        .gsub('\\', '\\\\\\')
-        .gsub("\n", '\\n')
-        .gsub("\r", '\\r')
-        .gsub("\t", '\\t')
-        .gsub("'", '"')
-  end
+    def code
+      File.read(@filename)
+          .chomp
+          .gsub('\\', '\\\\\\')
+          .gsub("\n", '\\n')
+          .gsub("\r", '\\r')
+          .gsub("\t", '\\t')
+          .gsub("'", '"')
+    end
 
-  def output
-    File.read("#{OUTPUT_DIR}/#{@title}").chomp
+    def output
+      File.read("#{OUTPUT_DIR}/#{@title}").chomp
+    end
   end
 end
