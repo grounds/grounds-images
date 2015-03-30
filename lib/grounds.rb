@@ -1,8 +1,8 @@
 module Grounds
   extend self
 
-  require 'grounds/example'
-  require 'grounds/image'
+  require_relative 'grounds/example'
+  require_relative 'grounds/image'
 
   def language
     ENV.fetch('LANGUAGE', 'all')
