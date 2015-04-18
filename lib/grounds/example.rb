@@ -19,17 +19,17 @@ module Grounds
     end
 
     def code
-      File.read(@filename)
-          .chomp
-          .gsub('\\', '\\\\\\')
-          .gsub("\n", '\\n')
-          .gsub("\r", '\\r')
-          .gsub("\t", '\\t')
-          .gsub("'", '"')
+      @code ||= File.read(@filename)
+        .chomp
+        .gsub('\\', '\\\\\\')
+        .gsub("\n", '\\n')
+        .gsub("\r", '\\r')
+        .gsub("\t", '\\t')
+        .gsub("'", '"')
     end
 
     def output
-      File.read("#{OUTPUT_DIR}/#{@title}").chomp
+      @output ||= File.read("#{OUTPUT_DIR}/#{@title}").chomp
     end
   end
 end
