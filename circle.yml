@@ -1,7 +1,7 @@
-# Install latest docker client
+# Install docker client 1.5.0
 machine:
   pre:
-    - sudo wget "https://get.docker.com/builds/Linux/x86_64/docker-latest" -O /usr/local/bin/docker
+    - sudo wget "https://get.docker.com/builds/Linux/x86_64/docker-1.5.0" -O /usr/local/bin/docker
     - sudo chmod +x /usr/local/bin/docker
 
 # By default, Circle CI already takes care of bundle install.
