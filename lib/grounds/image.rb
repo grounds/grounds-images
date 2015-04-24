@@ -23,7 +23,7 @@ module Grounds
     end
 
     def build
-      sh "docker build -f #{@filename} -t #{@name} #{DIR}"
+      sh "docker build --pull=true -f #{@filename} -t #{@name} #{DIR}"
     end
 
     def push
