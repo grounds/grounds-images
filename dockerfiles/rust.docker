@@ -4,10 +4,16 @@ MAINTAINER Gaetan Gueraud <exadeci@gmail.com>
 
 RUN apt-get update -qq && \
     apt-get install -qy \
-    curl \
+    wget \
     gcc
 
-RUN curl -s https://static.rust-lang.org/rustup.sh | sudo sh
+ENV RUST /haxe
+ENV VERSION 1.0.0
+
+RUN mkdir $RUST && \
+    wget -O rust.tar.gz https://static.rust-lang.org/dist/rust-$VERSION-x86_64-unknown-linux-gnu.tar.gz && \
+    tar xzf rust.tar.gz --strip=1 -C $RUST
+RUN chmod +x $RUST/install.sh | sh $RUST/install.sh
 
 ENV FILE prog.rs
 ENV COMPILE rustc -o prog $FILE
