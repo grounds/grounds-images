@@ -15,7 +15,6 @@ Grounds currently supports latest version of:
 - C#
 - Elixir
 - Go
-- Haxe
 - Java
 - Node.js
 - PHP
