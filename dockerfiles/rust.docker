@@ -1,13 +1,6 @@
-FROM ubuntu:14.04
+FROM rust:latest
 
 MAINTAINER Gaetan Gueraud <exadeci@gmail.com>
-
-RUN apt-get update -qq && \
-    apt-get install -qy \
-    curl \
-    gcc
-
-RUN curl -s https://static.rust-lang.org/rustup.sh | sudo sh
 
 ENV FILE prog.rs
 ENV COMPILE rustc -o prog $FILE
